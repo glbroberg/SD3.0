@@ -1,0 +1,442 @@
+﻿<Page 
+    x:Class="FSI.Mobile.SD.UWP.ViewModels.DispatchDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FSI.Mobile.SD.UWP.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fa="using:FontAwesome.UWP"
+    xmlns:data ="using:FSI.Mobile.SD.UWP.ViewModels"
+   
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".4*" />
+            <ColumnDefinition Width=".6*" />
+        </Grid.ColumnDefinitions>
+        <Grid Background="LightGray" BorderBrush="#2a80b9" BorderThickness="0,4,0,0"  Grid.Row="1" Grid.RowSpan="2"  Grid.ColumnSpan="2" />
+
+        <!-- Title Bar -->
+        <RelativePanel Grid.Row="0" Height="30" Grid.ColumnSpan="2"  >
+            <StackPanel Name="BackButton" Grid.Row="0" Orientation="Horizontal" Tapped="BackButton_Tapped" 
+                        RelativePanel.AlignVerticalCenterWithPanel="True"  >
+                <fa:FontAwesome Icon="ChevronLeft" Margin="5,0,5,0" Foreground="#3880b9" />
+                <TextBlock Name="BackButtonText" Text="Back" Foreground="#3880b9"  />
+            </StackPanel>
+
+            <TextBlock Text="Dispatch Number"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        </RelativePanel>
+
+        <!-- Left Column -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"  Grid.Column="0">
+
+            <RelativePanel Grid.Row="1" Margin="10,0,15,0">
+
+                <!-- Contact & Location -->
+                <StackPanel Name="ContactLocationBox"
+                        Background="White" 
+                        Margin="5,10,5,5"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        BorderBrush="Gray" 
+
+                        BorderThickness="0.5" >
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Contact &amp; Location" Padding="20,20,10,10" Foreground="#34495e" FontWeight="Bold"/>
+
+                        <RelativePanel Margin="10,10,10,10">
+                            <fa:FontAwesome Name="Home"  
+                                        Icon="Home" 
+                                        Width="20" 
+                                        Foreground="#16a085" 
+                                        Margin="5,0,15,0"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <StackPanel Padding="0,5,0,5" 
+                                    BorderBrush="#FFDEDEDE" 
+                                    BorderThickness="0,0,0,1" 
+                                    RelativePanel.RightOf="Home" 
+                                    RelativePanel.AlignRightWithPanel="True" >
+                                <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </RelativePanel>
+
+                        <RelativePanel Margin="10,10,10,10">
+                            <fa:FontAwesome Name="User" 
+                                        Icon="User" 
+                                        Width="20" 
+                                        Foreground="#16a085" 
+                                        Margin="5,0,15,0"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <StackPanel Padding="0,5,0,5" 
+                                    BorderBrush="#FFDEDEDE" 
+                                    BorderThickness="0,0,0,1" 
+                                    RelativePanel.RightOf="User" 
+                                    RelativePanel.AlignRightWithPanel="True" >
+                                <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e"/>
+                            </StackPanel>
+                        </RelativePanel>
+
+                        <RelativePanel Margin="10,10,10,10">
+                            <fa:FontAwesome Name="MapMarker" 
+                                        Icon="MapMarker" 
+                                        Width="20" 
+                                        Foreground="#16a085" 
+                                        Margin="5,0,15,0"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <StackPanel Padding="0,5,0,5" 
+                                    BorderBrush="#FFDEDEDE" 
+                                    BorderThickness="0,0,0,1" 
+                                    RelativePanel.RightOf="MapMarker" 
+                                    RelativePanel.AlignRightWithPanel="True" >
+                                <TextBlock Text="18200 Royalton Rd, Strongsville, OH 44136" VerticalAlignment="Center"  Foreground="#34495e"/>
+                            </StackPanel>
+                        </RelativePanel>
+
+                        <RelativePanel Margin="10,10,10,10" >
+                            <fa:FontAwesome Name="Phone" 
+                                        Icon="Phone" 
+                                        Width="20" 
+                                        Foreground="#16a085" 
+                                        Margin="5,0,15,0"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <StackPanel  Padding="0,5,0,5" 
+                                     BorderBrush="#FFDEDEDE" 
+                                     BorderThickness="0,0,0,1" 
+                                     RelativePanel.RightOf="Phone" 
+                                     RelativePanel.AlignRightWithPanel="True" 
+                                    >
+                                <TextBlock Text="(123) 456-7890" VerticalAlignment="Center"  Foreground="#34495e"/>
+                            </StackPanel>
+                        </RelativePanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,10,10,10">
+                            <Button Name="SiteInfoButton" Content="SITE INFO" Style="{StaticResource DetailsButton1}" Click="SiteInfoButton_Click"/>
+                            <Button Name="MapButton" Content="MAP" Style="{StaticResource DetailsButton1}" Click="launchURI_MAP" />
+                            <Button Name="DirectionsButton" Content="DIRECTIONS" Style="{StaticResource DetailsButton1}" Click="launchURI_Directions" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Mid Page Buttons -->
+                <StackPanel Name="ChangeStatusButton"
+                            Margin="5,5,10,5"
+                            Background="#1abc9c"
+                            CornerRadius="5"
+                            RelativePanel.Below="ContactLocationBox"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            RelativePanel.LeftOf="ClockInButton" 
+                           Tapped="ChangeStatus_Click">
+
+                    <TextBlock Name="ChangeStatusText"                        
+                       Text="CHANGE STATUS"
+                       Style="{StaticResource DetailsButton3}" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Name="ClockInButton"  
+                            Width="250"
+                            Background="#1abc9c"
+                            Margin="5,5,5,5"
+                            CornerRadius="5"
+                            RelativePanel.AlignRightWithPanel="True"
+                            RelativePanel.Below="ContactLocationBox" 
+                            Tapped="ClockInButton_Tapped">
+
+                    <TextBlock x:Name="CloclInText" 
+                       Text="CLOCK IN"                          
+                       RelativePanel.AlignRightWithPanel="True" 
+                       Style="{StaticResource DetailsButton3}" HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Name="testButtonPanel" 
+                            RelativePanel.Below="ChangeStatusButton"                            
+                            Margin="5,5,10,5"
+                            Background="#1abc9c"
+                            CornerRadius="5"
+                            Width="150"
+                            
+                            PointerEntered="StackPanel_PointerEntered"
+                            PointerExited="testButtonPanel_PointerExited"
+                            Padding="5,5">
+                    <TextBlock Text ="Change Status Flyout"  Style="{StaticResource DetailsButton3}" 
+                               Foreground="White" Tapped="TextBlock_Tapped_1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <FlyoutBase.AttachedFlyout>
+                                <Flyout x:Name="TestFly">
+                                    <StackPanel>
+                                        <TextBlock Text="Selected Status Code" FontSize="24"/>
+                                        <TextBlock Name="CurrentStatusCode" Text="" Foreground="Gray" />
+                                        <Button Name="AssignedButton" Content="Assigned"  Margin="5,5" Click="Assign_Click" />
+                                        <Button Name="FUNButton" Content="Follow up needed" Margin="5,5" Click="FUN_Click" />
+                                        <Button Content="Onsite" Margin="5,5"/>
+                                        <Button Content="Parts" Margin="5,5"/>
+                                        <Button Content="Coode initiates to Unassigned" Margin="5,5"/>
+                                        
+                                    </StackPanel>
+                                    
+                                </Flyout>
+                            </FlyoutBase.AttachedFlyout>
+                        </TextBlock>
+                </StackPanel>
+
+                <!-- Dispatch Details -->
+                <StackPanel Name="DetailsBox"
+                                RelativePanel.Below="testButtonPanel" 
+                                Background="White" 
+                                BorderBrush="Gray" 
+                                Margin="5,5,5,5"
+                                BorderThickness="0.5"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True">
+
+                    <StackPanel Margin="10">
+
+                        <TextBlock Text="Dispatch Details" Padding="20,20,10,10" Foreground="#34495e" FontWeight="Bold"/>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}" >
+                            <TextBlock Text="Lead Technician" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Type of Repair" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Contact Number" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Priority Code" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Status Code" FontSize="8" />
+                            <TextBlock Name="StatusCode" Text="Default" VerticalAlignment="Center" Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Work Requested" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center"  Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <TextBlock Text="Notes/Directions" FontSize="8" />
+                            <TextBlock Text="Location Holder" VerticalAlignment="Center"  Foreground="#34495e" HorizontalAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Style="{StaticResource DetailsPanel}">
+                            <RelativePanel>
+                                <TextBlock Text="Dispatch Complete" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left"/>
+                                <ToggleSwitch RelativePanel.AlignRightWithPanel="True" VerticalAlignment="Center" >
+                                    <ToggleSwitch.OffContent>
+                                        <TextBlock Text="No" />
+                                    </ToggleSwitch.OffContent>
+                                    <ToggleSwitch.OnContent>
+                                        <TextBlock Text="Yes" />
+                                    </ToggleSwitch.OnContent>
+                                </ToggleSwitch>
+                            </RelativePanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,10,10,10">
+                            <Button Name="EquipmentButton" Content="EQUIPMENT" Style="{StaticResource DetailsButton1}" Click="EquipmentButton_Click"/>
+                            <Button Name="UserDefinedFieldsButton" Content="USER DEFINED FIELDS" Style="{StaticResource DetailsButton1}" Click="UDFButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Bottom Button -->
+                <StackPanel RelativePanel.Below="DetailsBox"
+                        Background="#1abc9c"
+                        Margin="5,5,5,5"
+                        CornerRadius="5"
+                            Width="150">
+
+                    <TextBlock Name="DetailsButton6"                        
+                       Text="Submit"
+                       Style="{StaticResource DetailsButton3}" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+
+            </RelativePanel>
+
+        </ScrollViewer>
+
+        <!-- Right Column -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="1">
+
+            <RelativePanel Grid.Column="1" Grid.Row="1">
+
+                <!-- Description of Repair -->
+                <StackPanel Name="DescriptionBox"  
+                        Background="White"
+                        Margin="5,10,10,5"
+                        BorderBrush="Gray" 
+                        BorderThickness="0.5"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True" >
+                    <TextBlock Text="Description of Repair" Padding="20,20,10,10" Foreground="#34495e" FontWeight="Bold" />
+                    <TextBlock Name="DescriptionOfRepareText" Margin="20,5,20,5">ddhdfhshshf</TextBlock>
+                    <TextBlock />
+                    <Button Name="DescriptionAddButton"
+                        Content="Add" 
+                        Margin="15,0,10,10" 
+                        Style="{StaticResource DetailsButton1}"
+                        Click="DescriptionAddButton_Click"/>
+                </StackPanel>
+
+                <!-- Labor -->
+                <StackPanel Name="LaborBox" 
+                        Background="White"
+                        Margin="5,5,10,5"
+                        BorderBrush="Gray" 
+                        BorderThickness="0.5"
+                        RelativePanel.Below="DescriptionBox"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True">
+                    <StackPanel Orientation="Horizontal" Padding="10,10">
+                        <TextBlock Text="Labor" Foreground="#34495e" FontWeight="Bold" VerticalAlignment="Center" Padding="10,0,10,0"/>
+                        <Button VerticalAlignment="Center" Content="Columns" Padding="10,0,10,0">
+                            <Button.Flyout>
+                                <Flyout x:Name="ColumnPicker">
+                                    <StackPanel>
+                                        <CheckBox Name="DateCheckBox" Content="Date" Tapped="DateCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="TechnicianCheckBox" Content="Technician" Tapped="TechnicianCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="StartTimeCheckBox" Content="Start Time" Tapped="StartTimeCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="EndTimeCheckBox" Content="End Time" Tapped="EndTimeCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="BillingHoursCheckBox" Content="Billing Hour" Tapped="BillingHoursCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="DescriptionCheckBox" Content="Description" Tapped="DescriptionCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="EquipmentCheckBox" Content="Equipment" Tapped="EquipmentCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="HourlyCostCheckBox" Content="Hourly Cost" Tapped="HourlyCostCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="PriceLevelCheckBox" Content="Price Level" Tapped="PriceLevelCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="BillingRateCheckBox" Content="Billing Rate" Tapped="BillingRateCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="ShiftCheckBox" Content="Shift" Tapped="ShiftCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="PhaseCheckBox" Content="Phase}" Tapped="PhaseCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="CostCodeCheckBox" Content="Cost Code" Tapped="CostCodeCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="EarnCodeCheckBox" Content="Earn Code" Tapped="EarnCodeCheckBox_Tapped" FontSize="10"/>
+                                        <CheckBox Name="PayrollHoursCheckBox" Content="Payroll Hours" Tapped="PayrollHoursCheckBox_Tapped" FontSize="10"/>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </StackPanel>
+                    <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" >
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Name="DateColumn"  Text="Date"/>
+                                <TextBlock Text="Technician" />
+                                <TextBlock Text="Start Time" />
+                                <TextBlock Text="End Time" />
+                                <TextBlock Text="Billing Hours" />
+                                <TextBlock Text="Description" />
+                                <TextBlock Text="Equipment" />
+                                <TextBlock Text="Hourly Cost" />
+                                <TextBlock Text="Price Level" />
+                                <TextBlock Text="Billing Rate" />
+                                <TextBlock Text="Shift" />
+                                <TextBlock Text="Phase" />
+                                <TextBlock Text="Cost Code" />
+                                <TextBlock Text="Earn Code" />
+                                <TextBlock Text="Payroll Hours" />
+                            </StackPanel>
+                            <ListView Name="Test12" 
+                                SelectionMode="None" 
+                                      ItemsSource="{x:Bind LaborLogs}">
+                                <ListView.ItemTemplate >
+                                    <DataTemplate x:DataType="data:LaborLog">
+                                        <StackPanel Name="Test13"  Orientation="Horizontal">
+                                            <ListViewItem Name="Test14">
+                                                <TextBlock Name="DateDataColumn" Text="{x:Bind Date}"/>
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Name="TechnicianDataColumn" Text="{x:Bind Technician}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind StartTime}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind EndTime}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind BillingHours}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind Description}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind Equipment}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind HourlyCost}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind PriceLevel}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind BillingRate}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind Shift}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind Phase}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind CostCode}" />
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind EarnCode}" />
+
+                                            </ListViewItem>
+                                            <ListViewItem>
+                                                <TextBlock Text="{x:Bind PayrollHours}" />
+                                            </ListViewItem>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+
+                            </ListView>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Name="LaborAddButton" 
+                        Content="Add Labor" 
+                        Margin="15,0,10,10" 
+                        Style="{StaticResource DetailsButton1}"
+                        Click="LaborAddButton_Click"/>
+                </StackPanel>
+
+                <!-- Material -->
+                <StackPanel Name="MaterialBox" 
+                        Background="White"
+                        Margin="5,5,10,5"
+                        BorderBrush="Gray" 
+                        BorderThickness="0.5"
+                        RelativePanel.Below="LaborBox"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True">
+                    <TextBlock Text="Material" Padding="20,20,10,10" Foreground="#34495e" FontWeight="Bold"/>
+                    <TextBlock />
+                    <Button Name="MaterialAddButton" 
+                        Content="Add Material"  
+                        Margin="15,0,10,10" 
+                        Style="{StaticResource DetailsButton1}"
+                        Click="MaterialAddButton_Click"/>
+                </StackPanel>
+
+            </RelativePanel>
+
+        </ScrollViewer>
+
+
+    </Grid>
+</Page>
+
